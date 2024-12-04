@@ -14,11 +14,9 @@ use ApiPlatform\Metadata\Put;
 use ApiPlatform\OpenApi\Model\Operation;
 use App\Component\User\Dtos\CheckEmailDto;
 use App\Component\User\Dtos\RefreshTokenRequestDto;
-use App\Component\User\Dtos\ResetPasswordDto;
 use App\Component\User\Dtos\TokensDto;
 use App\Controller\DeleteAction;
 use App\Controller\RequestResetPasswordAction;
-use App\Controller\ResetPasswordAction;
 use App\Controller\UserAboutMeAction;
 use App\Controller\UserAuthAction;
 use App\Controller\UserAuthByRefreshTokenAction;
@@ -106,15 +104,10 @@ use Symfony\Component\Validator\Constraints as Assert;
             name: 'changePassword',
         ),
         new Post(
-            uriTemplate: 'users/request_reset_password',
+            uriTemplate: 'users/reset/recovery',
             controller: RequestResetPasswordAction::class,
             denormalizationContext: ['groups' => ['users:password_reset:write']],
             input: CheckEmailDto::class,
-        ),
-        new Post(
-            uriTemplate: 'users/reset_password',
-            controller: ResetPasswordAction::class,
-            input: ResetPasswordDto::class
         ),
     ],
     normalizationContext: ['groups' => ['user:read', 'users:read']],

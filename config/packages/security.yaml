@@ -60,13 +60,7 @@ security:
 
         request_reset_password:
             security: false
-            pattern: ^/api/users/request_reset_password
-            methods:
-                - post
-
-        reset_password:
-            security: false
-            pattern: ^/api/users/reset_password/?$
+            pattern: ^/api/users/reset/recovery$
             methods:
                 - post
 
